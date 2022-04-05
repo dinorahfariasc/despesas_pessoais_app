@@ -1,3 +1,4 @@
+import 'package:despesas_pessoais_app/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 main() {
@@ -16,7 +17,12 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
+
+  final _transactions = [
+    Transaction('t1', 'albumn idle', 230, DateTime.now()),
+    Transaction('t1', 'albumn queendom', 200, DateTime.now()),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +42,16 @@ class MyHomePage extends StatelessWidget {
               elevation: 5, // sombreamento
             ),
           ),
-          Card(
-            color: Color.fromARGB(255, 215, 75, 240),
-            child: Text('lista de transacoes'),
-          )
+          Column(
+            // passa as trancasoes como lista onde cada elemento da lista
+            //retorna alguma coisa (aqui é um card)
+            children: _transactions.map((tr) {
+              return Card(
+                color: Color.fromARGB(255, 219, 60, 247),
+                child: Text(tr.title),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
