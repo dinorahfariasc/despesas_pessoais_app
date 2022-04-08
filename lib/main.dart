@@ -1,5 +1,6 @@
 import 'package:despesas_pessoais_app/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 main() {
   runApp(ExpensesApp());
@@ -49,11 +50,11 @@ class MyHomePage extends StatelessWidget {
               return Card(
                 //color: Color.fromARGB(255, 219, 60, 247),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       margin: EdgeInsets.symmetric(
-                        horizontal: 18,
+                        horizontal: 15,
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
@@ -64,34 +65,32 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        tr.value.toString(),
+                        'R\$ ${tr.value.toStringAsFixed(2)}', //fixar o numero de decimais
                         style: TextStyle(
                           color: Colors.purple,
                           fontSize: 15,
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            tr.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15,
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tr.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
                           ),
-                          Text(
-                            tr.date.toString(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                            ),
+                        ),
+                        Text(
+                          DateFormat('d MMM y') // formatacao de data
+                              .format(tr.date),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
