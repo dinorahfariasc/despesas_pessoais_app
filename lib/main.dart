@@ -47,17 +47,51 @@ class MyHomePage extends StatelessWidget {
             //retorna alguma coisa (aqui é um card)
             children: _transactions.map((tr) {
               return Card(
-                color: Color.fromARGB(255, 219, 60, 247),
+                //color: Color.fromARGB(255, 219, 60, 247),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      child: Text(tr.value.toString()),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        tr.value.toString(),
+                        style: TextStyle(
+                          color: Colors.purple,
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(tr.title),
-                        Text(tr.date.toString()),
-                      ],
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            tr.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            tr.date.toString(),
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
