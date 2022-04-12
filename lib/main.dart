@@ -1,5 +1,6 @@
 import 'package:despesas_pessoais_app/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 main() {
@@ -32,7 +33,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('despesas pessoais'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -97,6 +98,33 @@ class MyHomePage extends StatelessWidget {
               );
             }).toList(),
           ),
+          Card(
+            elevation: 5,
+            child: Column(
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(labelText: 'Título'),
+                  inputFormatters: [LengthLimitingTextInputFormatter(35)],
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Descrição'),
+                  inputFormatters: [LengthLimitingTextInputFormatter(70)],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end, // final da linha
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Adicionar nova transação',
+                        style: TextStyle(color: Colors.purple),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
