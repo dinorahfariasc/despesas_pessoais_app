@@ -1,7 +1,6 @@
 import 'package:despesas_pessoais_app/components/transaction_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'dart:math';
 import '../models/transaction.dart';
 import './components/transaction_form.dart';
@@ -12,12 +11,34 @@ main() {
 }
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({Key? key}) : super(key: key);
+  ExpensesApp({Key? key}) : super(key: key);
+  final ThemeData tema = ThemeData();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: tema.copyWith(
+        colorScheme: tema.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: tema.textTheme.copyWith(
+          headline6: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -56,6 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    Navigator.of(context).pop(); // fechar o modal
   }
 
   _opentransactionFormModal(BuildContext context) {
@@ -73,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('despesas pessoais'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add_circle_rounded),
+            icon: Icon(Icons.add),
             onPressed: () {
               _opentransactionFormModal(context);
             },
@@ -88,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               //width: double.infinity,
               child: Card(
-                color: Color.fromARGB(255, 78, 228, 85),
+                color: Theme.of(context).colorScheme.secondary,
                 child: Text('grafico'),
                 elevation: 5, // sombreamento
               ),

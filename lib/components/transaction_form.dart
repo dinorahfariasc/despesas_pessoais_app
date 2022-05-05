@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TransactionForm extends StatelessWidget {
-  TransactionForm(this.onSubmit); // contructor
-
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
-
+class TransactionForm extends StatefulWidget {
+  TransactionForm(this.onSubmit);
   final void Function(String, double) onSubmit;
+
+  @override
+  State<TransactionForm> createState() => _TransactionFormState();
+}
+
+class _TransactionFormState extends State<TransactionForm> {
+  // contructor
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
 
   _submitForm() {
     // funcao para submeter o formulario caso os campos estejam ok
@@ -19,7 +25,7 @@ class TransactionForm extends StatelessWidget {
       return;
     }
 
-    onSubmit(title,
+    widget.onSubmit(title,
         value); // momento que pega as informacoes do usuario e passa para a funcao
   }
 

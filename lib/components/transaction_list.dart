@@ -31,7 +31,7 @@ class Transactionlist extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.purple,
+                      color: Theme.of(context).colorScheme.primary,
                       width: 2,
                     ),
                   ),
@@ -39,7 +39,7 @@ class Transactionlist extends StatelessWidget {
                   child: Text(
                     'R\$ ${tr.value.toStringAsFixed(2)}', //fixar o numero de decimais
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 15,
                     ),
                   ),
