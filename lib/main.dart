@@ -33,7 +33,7 @@ class ExpensesApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
-            fontFamily: 'Quicksand',
+            fontFamily: 'OpenSans',
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
