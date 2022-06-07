@@ -56,14 +56,31 @@ class _TransactionFormState extends State<TransactionForm> {
               LengthLimitingTextInputFormatter(7),
             ],
           ),
+          Container(
+            height: 70,
+            child: Row(
+              children: <Widget>[
+                Text('Nenhuma data selecionada'),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Selecionar data',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end, // final da linha
             children: <Widget>[
-              TextButton(
+              ElevatedButton(
                 onPressed: _submitForm,
                 child: Text(
                   'Adicionar nova transação',
-                  style: TextStyle(color: Colors.purple),
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.button?.color,
+                  ),
                 ),
               ),
             ],
