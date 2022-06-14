@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit);
-  final void Function(String, double) onSubmit;
+  final void Function(String, double, DateTime) onSubmit;
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -14,7 +14,7 @@ class _TransactionFormState extends State<TransactionForm> {
   // contructor
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
-  DateTime? _selectedDate;
+  DateTime _selectedDate = DateTime.now();
 
   _submitForm() {
     // funcao para submeter o formulario caso os campos estejam ok
@@ -22,12 +22,12 @@ class _TransactionFormState extends State<TransactionForm> {
     final value = double.tryParse(_valueController.text) ??
         0.0; // se o valor der errado ele usa o 0 como padrao
 
-    if (title.isEmpty || value <= 0) {
+    if (title.isEmpty || value <= 0 || _selectedDate == null) {
       return;
     }
 
-    widget.onSubmit(title,
-        value); // momento que pega as informacoes do usuario e passa para a funcao
+    widget.onSubmit(title, value,
+        _selectedDate); // momento que pega as informacoes do usuario e passa para a funcao
   }
 
   _showDatePicker() {
