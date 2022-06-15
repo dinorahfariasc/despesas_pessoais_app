@@ -8,14 +8,16 @@ class Transactionlist extends StatelessWidget {
   const Transactionlist({
     Key? key,
     required this.transaction,
+    required this.onRemove,
   }) : super(key: key);
 
   final List<Transaction> transaction;
+  final void Function(String) onRemove;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 520,
       child: transaction.isEmpty
           ? Column(children: <Widget>[
               SizedBox(
@@ -66,6 +68,11 @@ class Transactionlist extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline6),
                     subtitle: Text(
                       DateFormat('d MMM y').format(tr.date),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () => onRemove(tr.id),
+                      color: Color.fromARGB(255, 190, 202, 196),
                     ),
                   ),
                 );
