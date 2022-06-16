@@ -4,21 +4,18 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class Transactionlist extends StatelessWidget {
-  const Transactionlist({
-    Key? key,
-    required this.transaction,
-    required this.onRemove,
-  }) : super(key: key);
-
-  final List<Transaction> transaction;
+class TransactionList extends StatelessWidget {
+  final List<Transaction> transactions;
   final void Function(String) onRemove;
+
+  const TransactionList(this.transactions, this.onRemove, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 520,
-      child: transaction.isEmpty
+      height: 430,
+      child: transactions.isEmpty
           ? Column(children: <Widget>[
               SizedBox(
                 height: 20,
@@ -39,9 +36,9 @@ class Transactionlist extends StatelessWidget {
             ])
           : ListView.builder(
               // scorll
-              itemCount: transaction.length,
+              itemCount: transactions.length,
               itemBuilder: (BuildContext context, int index) {
-                final tr = transaction[index];
+                final tr = transactions[index];
                 return Card(
                   elevation: 5,
                   margin: EdgeInsets.symmetric(

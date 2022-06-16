@@ -6,6 +6,7 @@ import '../models/transaction.dart';
 import './components/transaction_form.dart';
 import './components/transaction_list.dart';
 import '../components/chart.dart';
+import 'models/transaction.dart';
 
 main() {
   runApp(ExpensesApp());
@@ -94,10 +95,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _opentransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (ctx) {
-          return TransactionForm(_addTransaction);
-        });
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+      },
+    );
   }
 
   @override
@@ -118,14 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             Chart(_recentTransactions),
-            Expanded(
-              child: Transactionlist(
-                  transaction: _transactions, onRemove: _removeTransaction),
-            ),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),
