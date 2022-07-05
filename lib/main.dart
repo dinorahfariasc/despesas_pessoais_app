@@ -113,6 +113,14 @@ class _MyHomePageState extends State<MyHomePage> {
         'Despesas pessoais',
       ),
       actions: <Widget>[
+        if (isLandScape)
+          IconButton(
+            icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+            onPressed: () {
+              setState(() {});
+              _showChart = !_showChart;
+            },
+          ),
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () {
@@ -133,31 +141,31 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (isLandScape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Exibir Gráfico'),
-                  Switch(
-                    activeColor: Theme.of(context).colorScheme.secondary,
-                    inactiveThumbColor: Theme.of(context).colorScheme.primary,
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
+            // if (isLandScape)
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text('Exibir Gráfico'),
+            //       Switch(
+            //         activeColor: Theme.of(context).colorScheme.secondary,
+            //         inactiveThumbColor: Theme.of(context).colorScheme.primary,
+            //         value: _showChart,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _showChart = value;
+            //           });
+            //         },
+            //       ),
+            //     ],
+            //   ),
             if (_showChart || !isLandScape)
               Container(
-                height: availableHeight * (isLandScape ? 0.65 : 0.3),
+                height: availableHeight * (isLandScape ? 0.8 : 0.3),
                 child: Chart(_recentTransactions),
               ),
             if (!_showChart || !isLandScape)
               Container(
-                height: availableHeight * 0.7,
+                height: availableHeight * (isLandScape ? 1 : 0.7),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
