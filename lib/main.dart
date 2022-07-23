@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
       actions: actions,
     );
 
-    // calculando a altura disponivel, subtraindo o espaco do app bar e do padding do top*
+    // calculando a altura disponivel, subtraindo o espaco do app bar e do padding do top
     final availableHeight = MediaQuery.of(context).size.height -
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
